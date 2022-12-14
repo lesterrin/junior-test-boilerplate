@@ -1,22 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import imageListReducer from './imageListReducer';
+import {legacy_createStore} from "redux"; //рассмотреть переход к configureStore
 
-const preloadedState = {
-    todos: [
-        {
-            text: 'Eat food',
-            completed: true,
-        },
-        {
-            text: 'Exercise',
-            completed: false,
-        },
-    ],
-    visibilityFilter: 'SHOW_COMPLETED',
-}
 
 const store = configureStore({reducer: imageListReducer});
 
-console.log(store.getState());
+//const store = legacy_createStore(imageListReducer);
+
+//console.log(store.getState());
 
 export default store;

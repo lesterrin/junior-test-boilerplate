@@ -1,26 +1,26 @@
 import classes from './ImageList.module.css';
 import {imagesAPI} from "../../api/api";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {ImageList} from "./ImageList";
 import {connect} from "react-redux";
-import {setImages} from "../../redux/imageListReducer";
+import {incrementCurrentPage, setImages} from "../../redux/imageListReducer";
 
-const ImageListContainer = ({images, setImages}) => {
+const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage}) => {
     useEffect(() => {
-        imagesAPI.getImages().then(data => {
-            console.log(data);
+        imagesAPI.getImages(currentPage).then(data => {
+            setImages(data);
         });
-    }, []);
+    }, [currentPage]); //должен перерисовываться сам при изменении стейта или должна быть зависимость от значения?
 
-    return (
-        <ImageList/>
-    );
+
+    return <ImageList images={images} setImages={setImages} incrementCurrentPage={incrementCurrentPage}/>;
 };
 
 const mapStateToProps = (state) => {
-    return({
-       images: state
+    return ({
+        images: state.imagesData,
+        currentPage: state.currentPage
     });
 }
 
-export default connect(mapStateToProps, {setImages})(ImageListContainer);
+export default connect(mapStateToProps, {setImages, incrementCurrentPage})(ImageListContainer);
