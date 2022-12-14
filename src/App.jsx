@@ -1,4 +1,4 @@
-import { ImageList } from './components';
+import ImageListContainer from './components/ImageList';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       </header>
       <main>
         <section>
-          <ImageList />
+          <ImageListContainer />
         </section>
       </main>
     </>
