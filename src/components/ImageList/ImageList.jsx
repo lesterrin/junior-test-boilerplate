@@ -1,8 +1,9 @@
 import classes from './ImageList.module.css';
 import {imagesAPI} from "../../api/api";
 import React, {useEffect} from "react";
+import Loader from "../loader";
 
-export const ImageList = ({images, incrementCurrentPage}) => {
+export const ImageList = ({images, incrementCurrentPage, isFetching}) => {
     const imagesItems = images.map(({id, alt_description, likes, urls}) => {
         return (
             <li key={id}>
@@ -18,7 +19,7 @@ export const ImageList = ({images, incrementCurrentPage}) => {
             <ul className={classes.list}>
                 {imagesItems}
             </ul>
-            <button onClick={()=>incrementCurrentPage()}>Ещё</button>
+            {isFetching ? <Loader/> : <button onClick={incrementCurrentPage}>Ещё</button>}
         </React.Fragment>
     );
 };
