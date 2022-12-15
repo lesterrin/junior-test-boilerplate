@@ -1,3 +1,25 @@
 .list {
     background-color: #61dafb;
 }
+
+.images_list {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+            ". . .";
+}
+
+.image_card {
+    border: 1px solid #e5e7eb
+}
+
+img {
+    height: 100px;
+}
+
+.liked {
+    background-color: red;
+}

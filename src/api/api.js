@@ -15,5 +15,7 @@ export const imagesAPI = {
                 page: currentPage
             }
         }).then(response => response.data);
-    }
+    },
+    likeImage: async (pageId) => ({response: 'заглушка', id: pageId})
 }
+

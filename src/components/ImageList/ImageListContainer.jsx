@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {incrementCurrentPage, setImages, toggleIsFetching} from "../../redux/imageListReducer";
 
 const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage, toggleIsFetching, isFetching}) => {
-    console.log(isFetching, currentPage);
+    console.log(images);
     useEffect(() => {
         toggleIsFetching(true);
         imagesAPI.getImages(currentPage)
@@ -16,8 +16,13 @@ const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPag
             });
     }, [currentPage]); //должен перерисовываться сам при изменении стейта или должна быть зависимость от значения?
 
+    const likeImage = (id) => {
+        imagesAPI.likeImage(id).then(data=>{
+           console.log(data);
+        });
+    }
 
-    return <ImageList images={images} setImages={setImages} incrementCurrentPage={incrementCurrentPage} isFetching={isFetching}/>;
+    return <ImageList images={images} setImages={setImages} incrementCurrentPage={incrementCurrentPage} isFetching={isFetching} likeImage={likeImage}/>;
 };
 
 const mapStateToProps = (state) => {
