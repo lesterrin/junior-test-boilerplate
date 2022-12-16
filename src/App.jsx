@@ -1,18 +1,25 @@
 import ImageListContainer from './components/ImageList';
+import {useEffect} from "react";
+import {unsplashAuthorize} from "./api/api";
 
 function App() {
-  return (
-    <>
-      <header>
-        <h1>Тестовое задание</h1>
-      </header>
-      <main>
-        <section>
-          <ImageListContainer />
-        </section>
-      </main>
-    </>
-  );
+
+    useEffect(() => {
+        unsplashAuthorize();
+    }, []);
+
+    return (
+        <>
+            <header>
+                <h1>Тестовое задание</h1>
+            </header>
+            <main>
+                <section>
+                    <ImageListContainer/>
+                </section>
+            </main>
+        </>
+    );
 }
 
 export default App;
