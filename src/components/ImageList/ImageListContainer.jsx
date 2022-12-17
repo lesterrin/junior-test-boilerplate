@@ -1,11 +1,10 @@
-import classes from './ImageList.module.css';
 import {imagesAPI} from "../../api/api";
 import React, {useEffect} from "react";
 import {ImageList} from "./ImageList";
 import {connect} from "react-redux";
 import {incrementCurrentPage, likeImage, unlikeImage, setImages, toggleIsFetching} from "../../redux/imageListReducer";
 
-const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage, toggleIsFetching, isFetching}) => {
+const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage, toggleIsFetching, isFetching, likeImage, unlikeImage}) => {
     console.log(images);
     useEffect(() => {
         toggleIsFetching(true);
@@ -23,8 +22,9 @@ const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPag
         );
     }
 
-    const unlikeImageWrap = (iid) => {
-        imagesAPI.unlikeImage(iid).then(() => {
+    const unlikeImageWrap = (id) => {
+        imagesAPI.unlikeImage(id).then(() => {
+                unlikeImage(id);
             }
         );
 

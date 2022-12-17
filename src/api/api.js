@@ -15,7 +15,6 @@ import Unsplash, {toJson} from "unsplash-js";
 const unsplash = new Unsplash({
     applicationId: "_s_qTCV6K0SHTJsi5dyz5zaiyrFVY8iQe_FXeWUy2Ss",
     secret: "5SDe5Kq6oijDz5D-PzXLB_EtFH4FJtwqsl3AxfH-Vek",
-    callbackUrl: "http://localhost:3000/auth", //удалить
     bearerToken: "Hrr5-Kb5FEPmrb74V4mD-AyChtsKL8-a7_i0dSPQRoc"
 });
 

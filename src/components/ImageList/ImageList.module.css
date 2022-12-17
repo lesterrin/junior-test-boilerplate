@@ -1,5 +1,8 @@
-.list {
-    background-color: #61dafb;
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .images_list {
@@ -10,25 +13,15 @@
     gap: 10px 10px;
     grid-template-areas:
             ". . .";
+    width:980px;
 }
 
-.image_card {
-    border: 1px solid #e5e7eb;
-    border-radius: 5px;
-    box-shadow: 3px 3px 6px 1px #e5e7eb;
-}
-
-img {
-    height: 100px;
-}
-
-.liked {
-    color: darkred;
-}
-
-button {
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
+.more_btn{
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    background: dodgerblue;
+    color: white;
     border: none;
+    border-radius: 5px;
 }

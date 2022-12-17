@@ -1,10 +1,4 @@
 {
-  "prettier/prettier": [
-    "error",
-    {
-      "endOfLine": "off"
-    }
-  ],
   "extends": [
     "@astral/eslint-config-base",
     "react-app",

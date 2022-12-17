@@ -1,28 +1,24 @@
 import classes from './ImageList.module.css'
 import React from "react";
 import Loader from "../loader";
+import ImageCard from "./imageCard";
 
 export const ImageList = ({images, incrementCurrentPage, isFetching, likeImage, unlikeImage}) => {
     const imagesItems = images.map(({id, created_at, urls, liked_by_user}) => {
-        return (
-            <div key={id} className={classes.image_card}>
-                <img src={urls.small}/>
-                <div>{created_at}</div>
-                {liked_by_user ?
-                    <button onClick={() => unlikeImage(id)}><span className={classes.liked}>&#10084;</span></button>
-                    :
-                    <button onClick={() => likeImage(id)}><span>&#10084;</span></button>
-                }
-            </div>
-        );
+        return <ImageCard key={id}
+                          id={id}
+                          created_at={created_at}
+                          urls={urls}
+                          liked_by_user={liked_by_user}
+                          likeImage={likeImage}
+                          unlikeImage={unlikeImage}/>
     });
 
     return (
-        <React.Fragment>
-            <div className={classes.images_list}>
-                {imagesItems}
-            </div>
-            {isFetching ? <Loader/> : <button onClick={incrementCurrentPage}>Ещё</button>}
-        </React.Fragment>
+        <div className={`${classes.images_list} ${classes.container}`}>
+            {imagesItems}
+            <div>{isFetching ? <Loader/> :
+                <button className={classes.more_btn} onClick={incrementCurrentPage}>Ещё</button>}</div>
+        </div>
     );
 };
