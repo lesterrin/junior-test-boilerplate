@@ -8,21 +8,20 @@ import {
     unlikeImage,
     setImages,
     toggleIsFetching,
-    getImages, likeImageThunkCreator, unlikeImageThunkCreator
+    getImages
 } from "../../redux/imageListReducer";
 
-const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage, getImages, isFetching, likeImageThunkCreator, unlikeImageThunkCreator}) => {
-
+const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage, getImages, isFetching, likeImage, unlikeImage}) => {
     useEffect(() => {
         getImages(currentPage);
-    }, [currentPage]); //должен перерисовываться сам при изменении стейта или должна быть зависимость от значения?
+    }, [currentPage]); //должен перерисовываться сам при изменении стейта или должна быть зависимость от значения? Почитать про изменение примитивов в стейте
 
     return <ImageList images={images}
                       setImages={setImages}
                       incrementCurrentPage={incrementCurrentPage}
                       isFetching={isFetching}
-                      likeImage={likeImageThunkCreator}
-                      unlikeImage={unlikeImageThunkCreator}/>;
+                      likeImage={likeImage}
+                      unlikeImage={unlikeImage}/>;
 };
 
 const mapStateToProps = (state) => {
@@ -37,9 +36,7 @@ export default connect(mapStateToProps, {
     setImages,
     incrementCurrentPage,
     toggleIsFetching,
-    likeImage,
-    unlikeImage,
     getImages,
-    likeImageThunkCreator,
-    unlikeImageThunkCreator
+    likeImage,
+    unlikeImage
 })(ImageListContainer);

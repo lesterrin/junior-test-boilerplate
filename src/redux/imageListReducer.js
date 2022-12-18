@@ -21,6 +21,10 @@ const imageListReducer = (state = initialState, action) => {
             };
 
         case INCREMENT_CURRENT_PAGE:
+            console.log(state.currentPage==={
+                ...state,
+                currentPage: state.currentPage + 1
+            }.currentPage);
             return {
                 ...state,
                 currentPage: state.currentPage + 1
@@ -69,8 +73,8 @@ const imageListReducer = (state = initialState, action) => {
 export const setImages = (images) => ({type: SET_IMAGES, imagesData: images});
 export const incrementCurrentPage = () => ({type: INCREMENT_CURRENT_PAGE});
 export const toggleIsFetching = (bool) => ({type: TOGGLE_IS_FETCHING, bool});
-export const likeImage = (id) => ({type: LIKE_IMAGE, id});
-export const unlikeImage = (id) => ({type: UNLIKE_IMAGE, id});
+export const likeImageSuccess = (id) => ({type: LIKE_IMAGE, id});
+export const unlikeImageSuccess = (id) => ({type: UNLIKE_IMAGE, id});
 
 //thunk creators
 export const getImages = (currentPage) => {
@@ -83,19 +87,19 @@ export const getImages = (currentPage) => {
     }
 }
 
-export const likeImageThunkCreator = (imageId) => {
+export const likeImage = (imageId) => {
     return (dispatch) => {
         imagesAPI.likeImage(imageId).then(() => {
-                dispatch(likeImage(imageId));
+                dispatch(likeImageSuccess(imageId));
             }
         );
     }
 }
 
-export const unlikeImageThunkCreator = (imageId) => {
+export const unlikeImage = (imageId) => {
     return (dispatch) => {
         imagesAPI.unlikeImage(imageId).then(() => {
-                dispatch(unlikeImage(imageId));
+                dispatch(unlikeImageSuccess(imageId));
             }
         );
     }
