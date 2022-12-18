@@ -17,6 +17,7 @@ const unsplash = new Unsplash({
     secret: "5SDe5Kq6oijDz5D-PzXLB_EtFH4FJtwqsl3AxfH-Vek",
     bearerToken: "Hrr5-Kb5FEPmrb74V4mD-AyChtsKL8-a7_i0dSPQRoc"
 });
+//переписать на axios
 
 export const unsplashAuthorize = () => {
     unsplash.currentUser.profile()
@@ -26,6 +27,7 @@ export const unsplashAuthorize = () => {
         });
     console.log(unsplash);
 }
+
 export const imagesAPI = {
     likeImage: (id) => {
         return unsplash.photos.likePhoto(id)

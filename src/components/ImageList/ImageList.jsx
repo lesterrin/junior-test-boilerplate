@@ -15,10 +15,12 @@ export const ImageList = ({images, incrementCurrentPage, isFetching, likeImage, 
     });
 
     return (
-        <div className={`${classes.images_list} ${classes.container}`}>
-            {imagesItems}
-            <div>{isFetching ? <Loader/> :
+        <>
+            <div className={`${classes.images_list} ${classes.container}`}>
+                {imagesItems}
+            </div>
+            <div className={classes.more_wrapper}>{isFetching ? <Loader/> :
                 <button className={classes.more_btn} onClick={incrementCurrentPage}>Ещё</button>}</div>
-        </div>
+        </>
     );
 };

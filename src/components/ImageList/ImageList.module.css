@@ -13,7 +13,14 @@
     gap: 10px 10px;
     grid-template-areas:
             ". . .";
-    width:980px;
+}
+
+.more_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
 }
 
 .more_btn{
@@ -24,4 +31,22 @@
     color: white;
     border: none;
     border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        width: 1170px;
+    }
 }

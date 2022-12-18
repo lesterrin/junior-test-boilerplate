@@ -1,3 +1,5 @@
+import {imagesAPI} from "../api/api";
+
 const SET_IMAGES = 'SET-IMAGES';
 const INCREMENT_CURRENT_PAGE = 'INCREMENT-CURRENT-IMAGES';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
@@ -31,7 +33,6 @@ const imageListReducer = (state = initialState, action) => {
             }
 
         case LIKE_IMAGE:
-            debugger;
             return {
                 ...state,
                 imagesData: state.imagesData.map(image => {
@@ -46,7 +47,6 @@ const imageListReducer = (state = initialState, action) => {
             }
 
         case UNLIKE_IMAGE:
-            debugger;
             return {
                 ...state,
                 imagesData: state.imagesData.map(image => {
@@ -65,10 +65,40 @@ const imageListReducer = (state = initialState, action) => {
     }
 }
 
+//action creators
 export const setImages = (images) => ({type: SET_IMAGES, imagesData: images});
 export const incrementCurrentPage = () => ({type: INCREMENT_CURRENT_PAGE});
 export const toggleIsFetching = (bool) => ({type: TOGGLE_IS_FETCHING, bool});
 export const likeImage = (id) => ({type: LIKE_IMAGE, id});
 export const unlikeImage = (id) => ({type: UNLIKE_IMAGE, id});
+
+//thunk creators
+export const getImages = (currentPage) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        imagesAPI.getImages(currentPage).then(data => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setImages(data));
+        });
+    }
+}
+
+export const likeImageThunkCreator = (imageId) => {
+    return (dispatch) => {
+        imagesAPI.likeImage(imageId).then(() => {
+                dispatch(likeImage(imageId));
+            }
+        );
+    }
+}
+
+export const unlikeImageThunkCreator = (imageId) => {
+    return (dispatch) => {
+        imagesAPI.unlikeImage(imageId).then(() => {
+                dispatch(unlikeImage(imageId));
+            }
+        );
+    }
+}
 
 export default imageListReducer;
