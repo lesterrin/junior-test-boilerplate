@@ -1,4 +1,3 @@
-import {imagesAPI} from "../../api/api";
 import React, {useEffect} from "react";
 import {ImageList} from "./ImageList";
 import {connect} from "react-redux";
@@ -14,7 +13,7 @@ import {
 const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage, getImages, isFetching, likeImage, unlikeImage}) => {
     useEffect(() => {
         getImages(currentPage);
-    }, [currentPage]); //должен перерисовываться сам при изменении стейта или должна быть зависимость от значения? Почитать про изменение примитивов в стейте
+    }, [currentPage]);
 
     return <ImageList images={images}
                       setImages={setImages}

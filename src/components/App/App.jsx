@@ -1,6 +1,6 @@
-import ImageListContainer from './components/ImageList';
+import ImageListContainer from '../ImageList';
 import {useEffect} from "react";
-import {unsplashAuthorize} from "./api/api";
+import {unsplashAuthorize} from "../../api/api";
 
 function App() {
 

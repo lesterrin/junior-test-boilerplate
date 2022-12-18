@@ -89,7 +89,7 @@ export const getImages = (currentPage) => {
 
 export const likeImage = (imageId) => {
     return (dispatch) => {
-        imagesAPI.likeImage(imageId).then(() => {
+        imagesAPI.likeImage(imageId).then((response) => {
                 dispatch(likeImageSuccess(imageId));
             }
         );
