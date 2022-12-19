@@ -12,11 +12,10 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 10px 10px;
-    grid-template-areas:
-            ". . .";
+    grid-template-areas: ". . .";
 }
 
-.more_wrapper{
+.more_wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +23,7 @@
     padding: 10px;
 }
 
-.more_btn{
+.more_btn {
     cursor: pointer;
     width: 150px;
     height: 50px;

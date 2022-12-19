@@ -1,8 +1,9 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+
 import imageListReducer from './imageListReducer';
 
 const store = configureStore({
-    reducer: imageListReducer
+  reducer: imageListReducer,
 });
 
 export default store;

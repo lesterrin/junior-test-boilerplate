@@ -1,41 +1,56 @@
-import React, {useEffect} from "react";
-import {ImageList} from "./ImageList";
-import {connect} from "react-redux";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+
 import {
-    incrementCurrentPage,
-    likeImage,
-    unlikeImage,
-    setImages,
-    toggleIsFetching,
-    getImages
-} from "../../redux/imageListReducer";
+  getImages,
+  incrementCurrentPage,
+  likeImage,
+  setImages,
+  toggleIsFetching,
+  unlikeImage,
+} from '../../redux/imageListReducer';
 
-const ImageListContainer = ({images, setImages, currentPage, incrementCurrentPage, getImages, isFetching, likeImage, unlikeImage}) => {
-    useEffect(() => {
-        getImages(currentPage);
-    }, [currentPage]);
+import { ImageList } from './ImageList';
 
-    return <ImageList images={images}
-                      setImages={setImages}
-                      incrementCurrentPage={incrementCurrentPage}
-                      isFetching={isFetching}
-                      likeImage={likeImage}
-                      unlikeImage={unlikeImage}/>;
+const ImageListContainer = ({
+  images,
+  setImages,
+  currentPage,
+  incrementCurrentPage,
+  getImages,
+  isFetching,
+  likeImage,
+  unlikeImage,
+}) => {
+  useEffect(() => {
+    getImages(currentPage);
+  }, [currentPage]);
+
+  return (
+    <ImageList
+      images={images}
+      setImages={setImages}
+      incrementCurrentPage={incrementCurrentPage}
+      isFetching={isFetching}
+      likeImage={likeImage}
+      unlikeImage={unlikeImage}
+    />
+  );
 };
 
 const mapStateToProps = (state) => {
-    return ({
-        images: state.imagesData,
-        currentPage: state.currentPage,
-        isFetching: state.isFetching
-    });
-}
+  return {
+    images: state.imagesData,
+    currentPage: state.currentPage,
+    isFetching: state.isFetching,
+  };
+};
 
 export default connect(mapStateToProps, {
-    setImages,
-    incrementCurrentPage,
-    toggleIsFetching,
-    getImages,
-    likeImage,
-    unlikeImage
+  setImages,
+  incrementCurrentPage,
+  toggleIsFetching,
+  getImages,
+  likeImage,
+  unlikeImage,
 })(ImageListContainer);

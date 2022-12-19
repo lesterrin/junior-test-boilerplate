@@ -1,3 +1,3 @@
-import ImageCard from "./imageCard";
+import ImageCard from './imageCard';
 
 export default ImageCard;
