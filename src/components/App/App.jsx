@@ -14,6 +14,10 @@ function App() {
     <>
       <header className={classes.container}>
         <h1>Тестовое задание</h1>
+        <p>
+          API имеет ограничение на 50 запросов в час. По исчерпанию лимита
+          запросы приниматься не будут.
+        </p>
       </header>
       <main>
         <section>

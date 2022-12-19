@@ -7,19 +7,24 @@ const instance = axios.create({
   },
 });
 
+const alertError = () =>
+  alert('Лимит запросов исчерпан. Ожидайте окончания часа');
+
 export const Auth = () => instance.get('/me').then((response) => response.data);
 
 export const imagesAPI = {
   likeImage: (imageId) => {
     return instance
       .post(`/photos/${imageId}/like`)
-      .then((response) => response);
+      .then((response) => response)
+      .catch(() => alertError());
   },
 
   unlikeImage: (imageId) => {
     return instance
       .delete(`/photos/${imageId}/like`)
-      .then((response) => response);
+      .then((response) => response)
+      .catch(() => alertError());
   },
 
   getImages: (currentPage) => {
@@ -30,6 +35,7 @@ export const imagesAPI = {
           per_page: 6,
         },
       })
-      .then((response) => response.data);
+      .then((response) => response.data)
+      .catch(() => alertError());
   },
 };
