@@ -17,14 +17,6 @@ const imageListReducer = (state = initialState, action) => {
       };
 
     case INCREMENT_CURRENT_PAGE:
-      console.log(
-        state.currentPage ===
-          {
-            ...state,
-            currentPage: state.currentPage + 1,
-          }.currentPage,
-      );
-
       return {
         ...state,
         currentPage: state.currentPage + 1,
@@ -97,7 +89,6 @@ export const getImages = (currentPage) => {
 export const likeImage = (imageId) => {
   return (dispatch) => {
     imagesAPI.likeImage(imageId).then((response) => {
-      console.log(response);
       dispatch(likeImageSuccess(imageId));
     });
   };
@@ -106,7 +97,6 @@ export const likeImage = (imageId) => {
 export const unlikeImage = (imageId) => {
   return (dispatch) => {
     imagesAPI.unlikeImage(imageId).then((response) => {
-      console.log(response);
       dispatch(unlikeImageSuccess(imageId));
     });
   };
