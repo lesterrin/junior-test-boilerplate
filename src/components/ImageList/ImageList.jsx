@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Loader from '../loader';
+import Loader from '../loader/loader';
 
-import ImageCard from './imageCard';
+import ImageCard from './imageCard/imageCard';
 import classes from './ImageList.module.css';
 
 export const ImageList = ({

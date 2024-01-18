@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import ImageListContainer from '../ImageList';
+import ImageListContainer from '../ImageList/ImageListContainer';
 import { Auth } from '../../api/api';
 
 import classes from './App.module.css';

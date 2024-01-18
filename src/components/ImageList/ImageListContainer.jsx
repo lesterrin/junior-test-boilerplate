@@ -1,56 +1,42 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {
-  getImages,
-  incrementCurrentPage,
-  likeImage,
-  setImages,
-  toggleIsFetching,
-  unlikeImage,
+    getImages,
+    incrementCurrentPage,
+    likeImage,
+    unlikeImage
 } from '../../redux/imageListReducer';
 
-import { ImageList } from './ImageList';
+import {ImageList} from './ImageList';
+import {selectCurrentPage, selectImages, selectIsFetching} from "../../selectors/imageListSelector";
 
-const ImageListContainer = ({
-  images,
-  setImages,
-  currentPage,
-  incrementCurrentPage,
-  getImages,
-  isFetching,
-  likeImage,
-  unlikeImage,
-}) => {
-  useEffect(() => {
-    getImages(currentPage);
-  }, [currentPage]);
+const ImageListContainer = () => {
 
-  return (
-    <ImageList
-      images={images}
-      setImages={setImages}
-      incrementCurrentPage={incrementCurrentPage}
-      isFetching={isFetching}
-      likeImage={likeImage}
-      unlikeImage={unlikeImage}
-    />
-  );
+    const images = useSelector(selectImages);
+    const currentPage = useSelector(selectCurrentPage);
+    const isFetching = useSelector(selectIsFetching);
+
+    const dispatch = useDispatch();
+
+    const incrementCurrentPageWrapper = () => dispatch(incrementCurrentPage());
+    const getImagesWrapper = (currentPage) => dispatch(getImages(currentPage));
+    const likeImageWrapper = (imageId) => dispatch(likeImage(imageId));
+    const unlikeImageWrapper = (imageId) => dispatch(unlikeImage(imageId));
+
+    useEffect(() => {
+        getImagesWrapper(currentPage);
+    }, [currentPage]);
+
+    return (
+        <ImageList
+            images={images}
+            isFetching={isFetching}
+            incrementCurrentPage={incrementCurrentPageWrapper}
+            likeImage={likeImageWrapper}
+            unlikeImage={unlikeImageWrapper}
+        />
+    );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    images: state.imagesData,
-    currentPage: state.currentPage,
-    isFetching: state.isFetching,
-  };
-};
-
-export default connect(mapStateToProps, {
-  setImages,
-  incrementCurrentPage,
-  toggleIsFetching,
-  getImages,
-  likeImage,
-  unlikeImage,
-})(ImageListContainer);
+export default ImageListContainer;

@@ -13,9 +13,6 @@
     "redux-thunk": "^2.4.2"
   },
   "devDependencies": {
-    "@astral/eslint-config-base": "^1.6.1",
-    "@astral/prettier-config": "^1.6.1",
-    "prettier": "^2.8.1",
     "react-router-dom": "^6.4.5"
   },
   "scripts": {

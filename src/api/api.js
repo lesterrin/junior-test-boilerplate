@@ -16,14 +16,14 @@ export const imagesAPI = {
   likeImage: (imageId) => {
     return instance
       .post(`/photos/${imageId}/like`)
-      .then((response) => response)
+      .then((response) => response.data.photo.id)
       .catch(() => alertError());
   },
 
   unlikeImage: (imageId) => {
     return instance
       .delete(`/photos/${imageId}/like`)
-      .then((response) => response)
+      .then((response) => response.data.photo.id)
       .catch(() => alertError());
   },
 
